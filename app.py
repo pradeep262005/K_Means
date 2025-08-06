@@ -25,17 +25,14 @@ def index():
         print("User Input:", user_point)
         print("Predicted Cluster:", cluster_number)
 
-        # Plot clusters
         plt.figure(figsize=(8, 6))
         plt.scatter(X[:, 0], X[:, 1], c=kmeans.labels_, s=30, cmap="viridis", alpha=0.6)
         centers = kmeans.cluster_centers_
 
-        # Draw circles around cluster centers
         for center in centers:
             circle = plt.Circle(center, 2.0, color='red', fill=False, linewidth=2)
             plt.gca().add_patch(circle)
 
-        # Mark user input
         plt.scatter(user_point[0][0], user_point[0][1], c='black', s=150,
                     edgecolors='white', marker='X', label='Your Point')
         plt.legend()
@@ -44,7 +41,6 @@ def index():
         plt.xlabel("X-axis")
         plt.ylabel("Y-axis")
 
-        # Save plot
         if not os.path.exists("static"):
             os.makedirs("static")
         plt.savefig("static/cluster.png")
